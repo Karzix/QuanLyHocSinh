@@ -66,7 +66,7 @@ namespace WebApplication3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LopHocId"] = new SelectList(_context.LopHocs, "Id", "Id", student.LopHocId);
+            ViewData["LopHocId"] = new SelectList(_context.LopHocs, "Id", "Name", student.LopHocId);
             return View(student);
         }
 
