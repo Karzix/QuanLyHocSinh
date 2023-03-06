@@ -20,9 +20,25 @@ namespace WebApplication3.Controllers
         }
 
         // GET: Student
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? Name, string? Mssv, string? LopHoc)
         {
-            var applicationDbContext = _context.Students.Include(s => s.LopHoc);
+            var applicationDbContext = _context.Students.Include(s => s.LopHoc).AsQueryable();
+            if (!string.IsNullOrEmpty(Name))
+            {
+                applicationDbContext = applicationDbContext.Where(m => m.Name.Contains(Name));
+                ViewBag.Name = Name;
+            }
+            if (!string.IsNullOrEmpty(Mssv))
+            {
+                applicationDbContext = applicationDbContext.Where(m => m.Mssv==Mssv);
+                ViewBag.Mssv = Mssv;
+            }
+            if (!string.IsNullOrEmpty(LopHoc))
+            {
+                applicationDbContext = applicationDbContext.Where(m => m.LopHoc.MaLopHoc == LopHoc);
+                ViewBag.LopHoc = LopHoc;
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
 

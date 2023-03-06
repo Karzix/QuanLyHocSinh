@@ -10,6 +10,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-controller="Student" asp-action="Index">
+    Tên học sinh:
+    <input type="text" name="Name" value="@ViewBag.Name"/>
+    <input type="submit" value="Filter" />
+    <input type="text" name="Mssv" value="@ViewBag.Mssv"/>
+    <input type="text" name="LopHoc" value="@ViewBag.LopHoc" />
+</form>
 <table class="table">
     <thead>
         <tr>
